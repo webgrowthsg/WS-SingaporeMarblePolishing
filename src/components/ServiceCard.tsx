@@ -8,7 +8,6 @@ export function ServiceCard({ to, title, description, ctaLabel = "Learn more" }:
       {image && <div>
         <img src={image.src} alt={image.alt} width={image.width} height={image.height}
           loading="lazy" decoding="async" className="aspect-[3/2] w-full object-cover transition-transform duration-300 motion-reduce:transform-none group-hover:scale-[1.02]" />
-        <p className="px-4 pt-2 text-xs text-stone-600">AI-generated illustration</p>
       </div>}
       <div className="p-6">
         <h3 className="font-serif text-xl font-semibold text-stone-900 group-hover:text-sage-700">{title}</h3>
