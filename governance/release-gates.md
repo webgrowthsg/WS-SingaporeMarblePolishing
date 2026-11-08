@@ -9,7 +9,7 @@ Production launch is BLOCKED until all gates are VERIFIED.
 | DOM-02 | DNS/TLS configured and verified | BLOCKED | Operator | None | — | Cannot configure DNS/TLS until domain ownership is verified. |
 | BIZ-01 | Legal operator identity supplied | BLOCKED | Operator | None | — | No registered business name, ACRA number, or legal entity provided. Cannot publish operator identity. |
 | BIZ-02 | Partner service coverage verified | BLOCKED | Operator | None | — | No independent service partners have been verified. Cannot claim partner availability, coverage, or capabilities. |
-| BIZ-03 | Verified contact methods configured | BLOCKED | Operator | WhatsApp number provided (+65 9341 6879) but not tested | — | WhatsApp number must be tested. Telephone and email not configured. |
+| BIZ-03 | Verified contact methods configured | BLOCKED | Operator | WhatsApp number provided (+65 9348 5255) but not tested | — | WhatsApp number must be tested. Telephone and email not configured. |
 | PRIV-01 | Privacy policy and PDPA review completed | BLOCKED | Operator + Legal | Draft template in `/privacy-policy/` | — | Privacy policy is a draft. Must be reviewed and approved by legal counsel familiar with Singapore PDPA. |
 | SEO-VAL-01 | All 12 routes return 200 with non-JS HTML content | NOT_STARTED | Developer | — | — | Requires prerender/SSG setup. Current Vite SPA renders client-side only. Must verify with non-JavaScript fetch. |
 | SEO-PUB-01 | Sitemap includes only approved canonical routes | VERIFIED | Developer | `scripts/generate-sitemap.mjs` output | 2026-11-08 | Sitemap generated with exactly 12 routes. |
@@ -34,7 +34,7 @@ Production launch is BLOCKED until all gates are VERIFIED.
 1. **Verify domain ownership** (DOM-01, DOM-02) — Register or confirm ownership of `singaporemarblepolishing.com`, configure DNS/TLS.
 2. **Provide legal operator identity** (BIZ-01) — Supply registered business name and ACRA number for the entity operating this website.
 3. **Verify service partners** (BIZ-02) — Confirm at least one independent service partner is available to receive enquiries.
-4. **Test WhatsApp number** (BIZ-03) — Verify +65 9341 6879 receives messages. Configure telephone and email if available.
+4. **Test WhatsApp number** (BIZ-03) — Verify +65 9348 5255 receives messages. Configure telephone and email if available.
 5. **Complete PDPA legal review** (PRIV-01) — Have the privacy policy and terms reviewed and approved by legal counsel.
 6. **Set up prerender/SSG** (SEO-VAL-01) — Configure static site generation for the 12 routes so crawlers receive non-JS HTML.
 7. **Configure security headers** (ENG-SEC-01) — Set CSP, HSTS, X-Content-Type-Options at the hosting layer.
