@@ -188,7 +188,7 @@ owner action:
 - Verify domain ownership
 - Provide legal operator identity (business name, ACRA number)
 - Verify at least one service partner
-- Test WhatsApp number (+65 9341 6879)
+- Test WhatsApp number (+65 9348 5255)
 - Complete PDPA legal review of privacy policy and terms
 - Set up prerender/SSG for SEO
 - Configure security headers at hosting layer
