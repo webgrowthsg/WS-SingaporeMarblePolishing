@@ -9,7 +9,6 @@ export function Section({ heading, children, id, className = "" }: SectionProps)
       {image && <figure className="mb-6">
         <img src={image.src} alt={image.alt} width={image.width} height={image.height}
           loading="lazy" decoding="async" className="aspect-[16/7] w-full rounded-xl object-cover" />
-        <figcaption className="mt-2 text-xs text-stone-600">AI-generated illustration; not a documented customer project.</figcaption>
       </figure>}
       <div className="leading-relaxed text-stone-700">{children}</div>
     </section>
