@@ -6,7 +6,7 @@ Claims without approved evidence must not be published as factual statements.
 | Claim ID | Route | Proposed Claim | Proof Owner | Evidence URL | Approval Status | Expiry | Notes |
 |----------|-------|----------------|-------------|--------------|----------------|--------|-------|
 | CLM-001 | All | "We coordinate enquiries with independent service partners" | Operator | N/A — structural fact about the website's operating model | APPROVED | — | This is a statement about the website's own function, not a claim about third parties. |
-| CLM-002 | All | WhatsApp contact: +65 9341 6879 | Operator | Operator-provided | PENDING_VERIFICATION | — | Number provided by operator. Must be tested before relying on it as a primary contact channel. |
+| CLM-002 | All | WhatsApp contact: +65 9348 5255 | Operator | Operator-provided | PENDING_VERIFICATION | — | Number provided by operator. Must be tested before relying on it as a primary contact channel. |
 | CLM-003 | `/about-us/` | Legal operator identity | Operator | N/A | BLOCKED | — | No legal entity name, ACRA number, or registered address has been supplied. Cannot publish operator identity until verified. |
 | CLM-004 | Service pages | Specific service partner capabilities | Operator | N/A | BLOCKED | — | No partner information has been verified. Cannot claim partner count, qualifications, or coverage. |
 | CLM-005 | All | Completed projects / testimonials / reviews | Operator | N/A | BLOCKED | — | No project evidence, testimonials, or verified reviews available. Omitted from the site. |
