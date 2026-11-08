@@ -8,11 +8,10 @@ export function Footer() {
   const pricing = routeRegistry.filter((r) => r.footerGroup === "pricing");
   const about = routeRegistry.filter((r) => r.footerGroup === "about");
   const legal = routeRegistry.filter((r) => r.footerGroup === "legal");
-  const conversion = routeRegistry.filter((r) => r.footerGroup === "conversion");
 
   const tel = telLink();
   const email = emailLink();
-  const wa = whatsappLink("Hello, I'd like a quote for marble polishing.");
+  const wa = whatsappLink("Hello, I'd like to enquire about marble polishing.");
 
   return (
     <footer className="mt-16 border-t border-stone-200 bg-stone-100">
@@ -71,7 +70,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Pricing + About + Quote */}
+          {/* Pricing + About */}
           <div>
             <h2 className="text-sm font-semibold text-stone-800">Guides & About</h2>
             <ul className="mt-3 space-y-2">
@@ -85,13 +84,6 @@ export function Footer() {
               {about.map((r) => (
                 <li key={r.path}>
                   <Link to={r.path} className="text-sm text-stone-600 hover:text-sage-600 hover:underline">
-                    {r.navLabel}
-                  </Link>
-                </li>
-              ))}
-              {conversion.map((r) => (
-                <li key={r.path}>
-                  <Link to={r.path} className="text-sm text-sage-600 font-medium hover:underline">
                     {r.navLabel}
                   </Link>
                 </li>

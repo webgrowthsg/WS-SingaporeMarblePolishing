@@ -12,25 +12,15 @@ import { siteConfig } from "./siteConfig";
 
 const ALLOWED_PARAMS = new Set([
   "page_path",
-  "form_id",
-  "service_category",
   "cta_location",
-  "error_type",
 ]);
 
 type EventParams = Partial<{
   page_path: string;
-  form_id: string;
-  service_category: string;
   cta_location: string;
-  error_type: string;
 }>;
 
 type EventName =
-  | "quote_form_start"
-  | "quote_form_submit"
-  | "quote_form_error"
-  | "generate_lead"
   | "click_whatsapp"
   | "click_call"
   | "click_email"
@@ -66,22 +56,6 @@ function pushEvent(name: EventName, params?: EventParams): void {
 
 export function trackPageView(path: string): void {
   pushEvent("page_view", { page_path: path });
-}
-
-export function trackFormStart(formId: string): void {
-  pushEvent("quote_form_start", { form_id: formId });
-}
-
-export function trackFormSubmit(formId: string): void {
-  pushEvent("quote_form_submit", { form_id: formId });
-}
-
-export function trackFormError(formId: string, errorType: string): void {
-  pushEvent("quote_form_error", { form_id: formId, error_type: errorType });
-}
-
-export function trackGenerateLead(formId: string): void {
-  pushEvent("generate_lead", { form_id: formId });
 }
 
 export function clickWhatsApp(ctaLocation: string): void {

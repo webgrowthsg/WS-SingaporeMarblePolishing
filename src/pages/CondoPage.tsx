@@ -2,7 +2,7 @@ import { PageLayout } from "../components/PageLayout";
 import { Hero } from "../components/Hero";
 import { Section } from "../components/Section";
 import { ServiceCard } from "../components/ServiceCard";
-import { QuoteCTA } from "../components/QuoteCTA";
+import { ContactCTA } from "../components/ContactCTA";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { TrustDisclosure } from "../components/TrustDisclosure";
 import { ContextualLinks } from "../components/ContextualLinks";
@@ -19,7 +19,7 @@ export function CondoPage() {
         title={route.h1}
         subtitle="Polishing and restoration guidance for condominium marble surfaces, including management approvals, access and treatment options."
       >
-        <QuoteCTA ctaLocation="condo-hero" label="Request a Quote" />
+        <ContactCTA ctaLocation="condo-hero" label="WhatsApp for a Quote" />
       </Hero>
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 space-y-12">
@@ -101,8 +101,8 @@ export function CondoPage() {
           <FAQAccordion items={condoFaqs} />
         </Section>
 
-        <Section heading="Request a Quote">
-          <QuoteCTA variant="secondary" ctaLocation="condo-final-cta" />
+        <Section heading="Get a Quote">
+          <ContactCTA variant="secondary" ctaLocation="condo-final-cta" />
         </Section>
 
         <ContextualLinks links={route.contextualLinks} routeRegistry={routeRegistry} />

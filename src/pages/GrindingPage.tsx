@@ -2,7 +2,7 @@ import { PageLayout } from "../components/PageLayout";
 import { Hero } from "../components/Hero";
 import { Section } from "../components/Section";
 import { TreatmentComparison } from "../components/TreatmentComparison";
-import { QuoteCTA } from "../components/QuoteCTA";
+import { ContactCTA } from "../components/ContactCTA";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { TrustDisclosure } from "../components/TrustDisclosure";
 import { ContextualLinks } from "../components/ContextualLinks";
@@ -19,7 +19,7 @@ export function GrindingPage() {
         title={route.h1}
         subtitle="A technical process for levelling uneven marble surfaces and addressing deep damage. Learn when grinding may or may not be appropriate before requesting an assessment."
       >
-        <QuoteCTA ctaLocation="grinding-hero" label="Request an Assessment" />
+        <ContactCTA ctaLocation="grinding-hero" label="WhatsApp for an Assessment" />
       </Hero>
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 space-y-12">
@@ -117,8 +117,8 @@ export function GrindingPage() {
           <FAQAccordion items={grindingFaqs} />
         </Section>
 
-        <Section heading="Request an Assessment">
-          <QuoteCTA variant="secondary" label="Request an Assessment" ctaLocation="grinding-final-cta" />
+        <Section heading="Get an Assessment">
+          <ContactCTA variant="secondary" label="WhatsApp for an Assessment" ctaLocation="grinding-final-cta" />
         </Section>
 
         <ContextualLinks links={route.contextualLinks} routeRegistry={routeRegistry} />

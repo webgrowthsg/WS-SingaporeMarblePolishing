@@ -24,7 +24,7 @@ export function SiteHeader() {
   }, [location.pathname]);
 
   const waLink = whatsappLink(
-    "Hello, I'd like to request a quote for marble polishing."
+    "Hello, I'd like to enquire about marble polishing."
   );
 
   const handleWhatsAppClick = () => clickWhatsApp("header");
@@ -86,16 +86,10 @@ export function SiteHeader() {
               rel="noopener noreferrer"
               onClick={handleWhatsAppClick}
               className="hidden sm:inline-flex items-center rounded-md bg-[#25D366] px-3 py-2 text-sm font-medium text-white hover:bg-[#1da851] transition-colors"
-              aria-label="Chat on WhatsApp for a quote"
+              aria-label="Chat on WhatsApp for an enquiry"
             >
-              WhatsApp Quote
+              WhatsApp Enquiry
             </a>
-            <Link
-              to="/request-a-quote/"
-              className="hidden md:inline-flex items-center rounded-md bg-sage-600 px-4 py-2 text-sm font-medium text-stone-50 hover:bg-sage-700 transition-colors"
-            >
-              Request a Quote
-            </Link>
 
             {/* Mobile menu button */}
             <button
@@ -130,7 +124,6 @@ export function SiteHeader() {
             </div>
             <MobileNavItem to="/marble-polishing-cost-singapore/">Pricing</MobileNavItem>
             <MobileNavItem to="/about-us/">About</MobileNavItem>
-            <MobileNavItem to="/request-a-quote/">Request a Quote</MobileNavItem>
             <div className="pt-2">
               <a
                 href={waLink}
@@ -139,7 +132,7 @@ export function SiteHeader() {
                 onClick={handleWhatsAppClick}
                 className="flex items-center justify-center rounded-md bg-[#25D366] px-4 py-2.5 text-sm font-medium text-white"
               >
-                WhatsApp for a Quote
+                WhatsApp for an Enquiry
               </a>
             </div>
           </nav>
@@ -178,5 +171,4 @@ function MobileNavItem({ to, children }: { to: string; children: React.ReactNode
   );
 }
 
-// Also export the route list for potential reuse
 export { routeRegistry };

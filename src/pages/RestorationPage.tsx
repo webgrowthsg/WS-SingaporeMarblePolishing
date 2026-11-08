@@ -2,7 +2,7 @@ import { PageLayout } from "../components/PageLayout";
 import { Hero } from "../components/Hero";
 import { Section } from "../components/Section";
 import { TreatmentComparison } from "../components/TreatmentComparison";
-import { QuoteCTA } from "../components/QuoteCTA";
+import { ContactCTA } from "../components/ContactCTA";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { TrustDisclosure } from "../components/TrustDisclosure";
 import { ContextualLinks } from "../components/ContextualLinks";
@@ -19,7 +19,7 @@ export function RestorationPage() {
         title={route.h1}
         subtitle="Understand when marble restoration may be needed, the treatment options available, and how to enquire for an independent assessment in Singapore."
       >
-        <QuoteCTA ctaLocation="restoration-hero" label="Request a Quote" />
+        <ContactCTA ctaLocation="restoration-hero" label="WhatsApp for a Quote" />
       </Hero>
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 space-y-12">
@@ -138,10 +138,9 @@ export function RestorationPage() {
         <Section heading="Assessment and Service Coordination">
           <p>
             Because marble damage varies widely, an accurate assessment
-            requires inspecting the surface in person. When you submit an
-            enquiry, we share your details with an independent service partner
-            who can arrange an on-site assessment and provide a quotation
-            directly.
+            requires inspecting the surface in person. When you message us,
+            we share your details with an independent service partner who can
+            arrange an on-site assessment and provide a quotation directly.
           </p>
           <p className="mt-3">
             We do not diagnose specific conditions or recommend particular
@@ -154,8 +153,8 @@ export function RestorationPage() {
           <FAQAccordion items={restorationFaqs} />
         </Section>
 
-        <Section heading="Request a Quote">
-          <QuoteCTA variant="secondary" ctaLocation="restoration-final-cta" />
+        <Section heading="Get a Quote">
+          <ContactCTA variant="secondary" ctaLocation="restoration-final-cta" />
         </Section>
 
         <ContextualLinks links={route.contextualLinks} routeRegistry={routeRegistry} />

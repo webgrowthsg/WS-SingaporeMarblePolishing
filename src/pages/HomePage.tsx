@@ -2,7 +2,7 @@ import { PageLayout } from "../components/PageLayout";
 import { Hero } from "../components/Hero";
 import { Section } from "../components/Section";
 import { ServiceCard } from "../components/ServiceCard";
-import { QuoteCTA } from "../components/QuoteCTA";
+import { ContactCTA } from "../components/ContactCTA";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { TrustDisclosure } from "../components/TrustDisclosure";
 import { ContextualLinks } from "../components/ContextualLinks";
@@ -20,15 +20,7 @@ export function HomePage() {
         subtitle="Enquiry coordination for residential and commercial marble surfaces across Singapore. We connect your enquiry with independent service partners for assessment and quotation."
       >
         <div className="flex flex-wrap gap-3">
-          <QuoteCTA ctaLocation="hero" />
-          <a
-            href="https://wa.me/6593416879?text=Hello%2C%20I%27d%20like%20a%20quote%20for%20marble%20polishing"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center rounded-md bg-[#25D366] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#1da851] transition-colors"
-          >
-            WhatsApp for a Quote
-          </a>
+          <ContactCTA ctaLocation="hero" label="WhatsApp for a Quote" />
         </div>
       </Hero>
 
@@ -152,12 +144,12 @@ export function HomePage() {
         </Section>
 
         {/* Final CTA */}
-        <Section heading="Request a Quotation">
+        <Section heading="Get Your Marble Assessed">
           <p className="mb-4">
-            Ready to get your marble surface assessed? Submit an enquiry and
+            Ready to get your marble surface assessed? Message us on WhatsApp and
             we'll coordinate with an independent service partner where available.
           </p>
-          <QuoteCTA variant="secondary" ctaLocation="home-final-cta" />
+          <ContactCTA variant="secondary" ctaLocation="home-final-cta" />
         </Section>
 
         <ContextualLinks links={route.contextualLinks} routeRegistry={routeRegistry} />

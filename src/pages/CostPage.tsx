@@ -1,7 +1,7 @@
 import { PageLayout } from "../components/PageLayout";
 import { Hero } from "../components/Hero";
 import { Section } from "../components/Section";
-import { QuoteCTA } from "../components/QuoteCTA";
+import { ContactCTA } from "../components/ContactCTA";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { TrustDisclosure } from "../components/TrustDisclosure";
 import { ContextualLinks } from "../components/ContextualLinks";
@@ -18,7 +18,7 @@ export function CostPage() {
         title={route.h1}
         subtitle="Understand what affects marble polishing pricing in Singapore and what a proper quotation should include. No invented prices — just transparent factors."
       >
-        <QuoteCTA ctaLocation="cost-hero" label="Request a Tailored Quote" />
+        <ContactCTA ctaLocation="cost-hero" label="WhatsApp for a Tailored Quote" />
       </Hero>
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 space-y-12">
@@ -95,14 +95,14 @@ export function CostPage() {
           <FAQAccordion items={costFaqs} />
         </Section>
 
-        <Section heading="Request a Tailored Quote">
+        <Section heading="Get a Tailored Quote">
           <p className="mb-4">
             Rather than relying on published price lists, the most accurate way
             to understand the cost for your marble surface is to request an
-            assessment. Submit an enquiry and we'll coordinate with an
+            assessment. Message us on WhatsApp and we'll coordinate with an
             independent service partner who can provide a written quotation.
           </p>
-          <QuoteCTA variant="secondary" label="Request a Tailored Quote" ctaLocation="cost-final-cta" />
+          <ContactCTA variant="secondary" label="WhatsApp for a Tailored Quote" ctaLocation="cost-final-cta" />
         </Section>
 
         <ContextualLinks links={route.contextualLinks} routeRegistry={routeRegistry} />

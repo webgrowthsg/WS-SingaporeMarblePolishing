@@ -1,7 +1,7 @@
 import { PageLayout } from "../components/PageLayout";
 import { Hero } from "../components/Hero";
 import { Section } from "../components/Section";
-import { QuoteCTA } from "../components/QuoteCTA";
+import { ContactCTA } from "../components/ContactCTA";
 import { TrustDisclosure } from "../components/TrustDisclosure";
 import { ContextualLinks } from "../components/ContextualLinks";
 import { getRoute } from "../lib/routeRegistry";
@@ -18,7 +18,7 @@ export function AboutPage() {
         title={route.h1}
         subtitle="A lead coordination website connecting marble polishing enquiries with independent service partners in Singapore."
       >
-        <QuoteCTA ctaLocation="about-hero" />
+        <ContactCTA ctaLocation="about-hero" />
       </Hero>
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 space-y-12">
@@ -89,15 +89,7 @@ export function AboutPage() {
             services.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <QuoteCTA ctaLocation="about-contact" />
-            <a
-              href="https://wa.me/6593416879?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20marble%20polishing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-md bg-[#25D366] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#1da851] transition-colors"
-            >
-              WhatsApp Us
-            </a>
+            <ContactCTA ctaLocation="about-contact" label="WhatsApp Us" />
           </div>
         </Section>
 

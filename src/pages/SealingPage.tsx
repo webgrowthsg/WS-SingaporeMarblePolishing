@@ -1,7 +1,7 @@
 import { PageLayout } from "../components/PageLayout";
 import { Hero } from "../components/Hero";
 import { Section } from "../components/Section";
-import { QuoteCTA } from "../components/QuoteCTA";
+import { ContactCTA } from "../components/ContactCTA";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { TrustDisclosure } from "../components/TrustDisclosure";
 import { ContextualLinks } from "../components/ContextualLinks";
@@ -18,7 +18,7 @@ export function SealingPage() {
         title={route.h1}
         subtitle="Understand what marble sealers do and don't do, when sealing may help, and how it fits into a broader maintenance approach."
       >
-        <QuoteCTA ctaLocation="sealing-hero" label="Request an Assessment" />
+        <ContactCTA ctaLocation="sealing-hero" label="WhatsApp for an Assessment" />
       </Hero>
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 space-y-12">
@@ -103,8 +103,8 @@ export function SealingPage() {
           <FAQAccordion items={sealingFaqs} />
         </Section>
 
-        <Section heading="Request an Assessment">
-          <QuoteCTA variant="secondary" label="Request an Assessment" ctaLocation="sealing-final-cta" />
+        <Section heading="Get an Assessment">
+          <ContactCTA variant="secondary" label="WhatsApp for an Assessment" ctaLocation="sealing-final-cta" />
         </Section>
 
         <ContextualLinks links={route.contextualLinks} routeRegistry={routeRegistry} />

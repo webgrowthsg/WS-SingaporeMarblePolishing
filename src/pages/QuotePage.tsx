@@ -1,7 +1,6 @@
 import { PageLayout } from "../components/PageLayout";
 import { Hero } from "../components/Hero";
 import { Section } from "../components/Section";
-import { QuoteForm } from "../components/QuoteForm";
 import { TrustDisclosure } from "../components/TrustDisclosure";
 import { ContextualLinks } from "../components/ContextualLinks";
 import { getRoute } from "../lib/routeRegistry";
@@ -14,29 +13,17 @@ const route = getRoute("/request-a-quote/")!;
 export function QuotePage() {
   const tel = telLink();
   const email = emailLink();
-  const wa = whatsappLink("Hello, I'd like a quote for marble polishing.");
+  const wa = whatsappLink("Hello, I'd like to enquire about marble polishing.");
 
   return (
     <PageLayout route={route}>
       <Hero
         title={route.h1}
-        subtitle="Tell us about your marble surface and the issue you're experiencing. We'll coordinate your enquiry with an independent service partner where available."
+        subtitle="Reach out by WhatsApp, phone or email and we'll coordinate your enquiry with an independent service partner where available."
       />
 
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 space-y-10">
         <TrustDisclosure variant="full" />
-
-        {/* Form section */}
-        <Section heading="Tell Us About Your Marble Surface">
-          <p className="mb-6 text-sm text-stone-600" id="form-intro">
-            Fields marked with <span className="text-red-600">*</span> are required.
-            Please do not include your full address — an approximate district or
-            area is sufficient for initial coordination.
-          </p>
-          <div className="rounded-lg border border-stone-200 bg-white p-6 sm:p-8">
-            <QuoteForm />
-          </div>
-        </Section>
 
         {/* What happens next */}
         <Section heading="What Happens After You Enquire">
@@ -56,8 +43,8 @@ export function QuotePage() {
         {/* Contact options */}
         <Section heading="Contact Options">
           <p className="mb-4">
-            Prefer to reach out directly? The following contact channels are
-            available:
+            The fastest way to reach us is WhatsApp. The following contact
+            channels are available:
           </p>
           <div className="space-y-3">
             <a
@@ -126,16 +113,10 @@ export function QuotePage() {
         {/* Privacy notice */}
         <Section heading="How Your Information Is Used">
           <p>
-            When you submit an enquiry, the information you provide is shared
-            with independent service partners for the purpose of assessing your
+            When you enquire, the information you provide is shared with
+            independent service partners for the purpose of assessing your
             marble surface and providing a quotation. We do not sell your
             information to third parties.
-          </p>
-          <p className="mt-3">
-            If you opt in to marketing consent (separate from your enquiry),
-            you may receive occasional updates about marble care. You can
-            withdraw this consent at any time. Marketing consent is not
-            required to submit an enquiry.
           </p>
           <p className="mt-3">
             For full details, please read our{" "}

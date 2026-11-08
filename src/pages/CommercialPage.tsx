@@ -2,7 +2,7 @@ import { PageLayout } from "../components/PageLayout";
 import { Hero } from "../components/Hero";
 import { Section } from "../components/Section";
 import { ServiceCard } from "../components/ServiceCard";
-import { QuoteCTA } from "../components/QuoteCTA";
+import { ContactCTA } from "../components/ContactCTA";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { TrustDisclosure } from "../components/TrustDisclosure";
 import { ContextualLinks } from "../components/ContextualLinks";
@@ -19,7 +19,7 @@ export function CommercialPage() {
         title={route.h1}
         subtitle="Enquiry coordination for commercial marble surfaces — lobbies, retail spaces, offices and common areas. Assessment, restoration and maintenance guidance."
       >
-        <QuoteCTA ctaLocation="commercial-hero" label="Request a Commercial Quote" />
+        <ContactCTA ctaLocation="commercial-hero" label="WhatsApp for a Commercial Quote" />
       </Hero>
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 space-y-12">
@@ -93,7 +93,7 @@ export function CommercialPage() {
 
         <Section heading="How Commercial Enquiries Are Assessed">
           <p>
-            When you submit a commercial enquiry, providing details about the
+            When you send a commercial enquiry, providing details about the
             building type, approximate area, current condition, and access
             constraints helps service partners respond effectively. A partner
             would typically arrange a site visit to assess the surface and
@@ -109,8 +109,8 @@ export function CommercialPage() {
           <FAQAccordion items={commercialFaqs} />
         </Section>
 
-        <Section heading="Request a Commercial Quote">
-          <QuoteCTA variant="secondary" label="Request a Commercial Quote" ctaLocation="commercial-final-cta" />
+        <Section heading="Get a Commercial Quote">
+          <ContactCTA variant="secondary" label="WhatsApp for a Commercial Quote" ctaLocation="commercial-final-cta" />
         </Section>
 
         <ContextualLinks links={route.contextualLinks} routeRegistry={routeRegistry} />

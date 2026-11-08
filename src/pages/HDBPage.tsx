@@ -2,7 +2,7 @@ import { PageLayout } from "../components/PageLayout";
 import { Hero } from "../components/Hero";
 import { Section } from "../components/Section";
 import { ServiceCard } from "../components/ServiceCard";
-import { QuoteCTA } from "../components/QuoteCTA";
+import { ContactCTA } from "../components/ContactCTA";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { TrustDisclosure } from "../components/TrustDisclosure";
 import { ContextualLinks } from "../components/ContextualLinks";
@@ -19,7 +19,7 @@ export function HDBPage() {
         title={route.h1}
         subtitle="Treatment options and practical guidance for HDB homes with marble flooring. Enquire for an independent assessment and quotation."
       >
-        <QuoteCTA ctaLocation="hdb-hero" label="Request a Quote" />
+        <ContactCTA ctaLocation="hdb-hero" label="WhatsApp for a Quote" />
       </Hero>
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 space-y-12">
@@ -77,7 +77,7 @@ export function HDBPage() {
 
         <Section heading="What to Expect from an Assessment">
           <p>
-            When you submit an enquiry, a service partner can arrange to inspect
+            When you message us, a service partner can arrange to inspect
             your marble surface and provide a quotation. The assessment
             typically involves:
           </p>
@@ -108,8 +108,8 @@ export function HDBPage() {
           <FAQAccordion items={hdbFaqs} />
         </Section>
 
-        <Section heading="Request a Quote">
-          <QuoteCTA variant="secondary" ctaLocation="hdb-final-cta" />
+        <Section heading="Get a Quote">
+          <ContactCTA variant="secondary" ctaLocation="hdb-final-cta" />
         </Section>
 
         <ContextualLinks links={route.contextualLinks} routeRegistry={routeRegistry} />
