@@ -9,7 +9,7 @@ export const siteConfig = {
   name: "Singapore Marble Polishing",
   domain: "singaporemarblepolishing.com",
   whatsappNumber:
-    (import.meta.env.VITE_WHATSAPP_NUMBER as string | undefined) ?? "+6593416879",
+    (import.meta.env.VITE_WHATSAPP_NUMBER as string | undefined) ?? "+6593485255",
   telephone: (import.meta.env.VITE_TELEPHONE as string | undefined) ?? "",
   email: (import.meta.env.VITE_EMAIL_ADDRESS as string | undefined) ?? "",
   ga4Id: (import.meta.env.VITE_GA4_MEASUREMENT_ID as string | undefined) ?? "",
