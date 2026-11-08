@@ -16,9 +16,8 @@ export function Hero({ title, subtitle, children }: HeroProps) {
           </div>
           {image && <figure className="min-w-0">
             <img src={image.src} alt={image.alt} width={image.width} height={image.height}
-              fetchPriority={primary ? "high" : "auto"} loading="eager" decoding="async"
+              fetchPriority={primary ? "high" : "auto"} loading={primary ? "eager" : "lazy"} decoding="async"
               className="aspect-[3/2] w-full rounded-2xl object-cover shadow-lg ring-1 ring-stone-200" />
-            <figcaption className="mt-2 text-xs text-stone-600">AI-generated illustration. Not a photograph of a completed project or service partner.</figcaption>
           </figure>}
         </div>
       </div>
