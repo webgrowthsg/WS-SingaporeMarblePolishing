@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-stone-50 text-stone-800 font-sans antialiased;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.2;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+
+  /* Visible keyboard focus */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-sage-600;
+  }
+}
+
+@layer components {
+  .prose-content {
+    @apply max-w-prose text-stone-700;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Do not disallow public assets
+Allow: /assets/
+Allow: /favicon.svg
+
+# Sitemap reference
+Sitemap: https://singaporemarblepolishing.com/sitemap.xml
