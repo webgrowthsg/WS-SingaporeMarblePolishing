@@ -33,49 +33,92 @@ function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function validateInput(data: LeadInput): { valid: boolean; errors: string[] } {
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function validateInput(value: unknown): { valid: boolean; errors: string[]; data?: LeadInput } {
   const errors: string[] = [];
 
-  if (!data.name || data.name.trim().length < 2) {
-    errors.push("Name is required.");
+  if (!isRecord(value)) {
+    return { valid: false, errors: ["Request body must be an object."] };
   }
-  if (!data.phone || !isValidPhone(data.phone)) {
+
+  const data = value as Partial<LeadInput>;
+  const propertyTypes = ["HDB", "Condo", "Commercial", "Other"];
+  const textFields: Array<keyof LeadInput> = [
+    "name",
+    "phone",
+    "district",
+    "surfaceType",
+    "approximateSize",
+    "issue",
+  ];
+
+  for (const field of textFields) {
+    if (typeof data[field] !== "string") {
+      errors.push(`${field} is required.`);
+    }
+  }
+
+  if (typeof data.name === "string" && (data.name.trim().length < 2 || data.name.trim().length > 120)) {
+    errors.push("Name length is invalid.");
+  }
+  if (typeof data.phone === "string" && !isValidPhone(data.phone)) {
     errors.push("Valid phone number is required.");
   }
-  if (data.email && !isValidEmail(data.email)) {
+  if (data.email !== undefined && (typeof data.email !== "string" || data.email.length > 254 || !isValidEmail(data.email))) {
     errors.push("Email format is invalid.");
   }
-  if (!data.propertyType || !["HDB", "Condo", "Commercial", "Other"].includes(data.propertyType)) {
+  if (typeof data.propertyType !== "string" || !propertyTypes.includes(data.propertyType)) {
     errors.push("Property type is required.");
   }
-  if (!data.district || data.district.trim().length < 2) {
-    errors.push("District/area is required.");
+  if (typeof data.district === "string" && (data.district.trim().length < 2 || data.district.trim().length > 120)) {
+    errors.push("District/area length is invalid.");
   }
-  if (!data.surfaceType || data.surfaceType.trim().length < 2) {
-    errors.push("Surface type is required.");
+  if (typeof data.surfaceType === "string" && (data.surfaceType.trim().length < 2 || data.surfaceType.trim().length > 200)) {
+    errors.push("Surface type length is invalid.");
   }
-  if (!data.approximateSize) {
-    errors.push("Approximate size is required.");
+  if (typeof data.approximateSize === "string" && (data.approximateSize.trim().length < 1 || data.approximateSize.trim().length > 80)) {
+    errors.push("Approximate size is invalid.");
   }
-  if (!data.issue || data.issue.trim().length < 5) {
-    errors.push("Issue description is required (at least 5 characters).");
+  if (typeof data.issue === "string" && (data.issue.trim().length < 5 || data.issue.trim().length > 2000)) {
+    errors.push("Issue description length is invalid.");
   }
-  if (!data.enquiryAcknowledged) {
+  if (data.enquiryAcknowledged !== true) {
     errors.push("Privacy acknowledgement is required.");
   }
 
-  return { valid: errors.length === 0, errors };
+  const optionalTextFields: Array<keyof LeadInput> = [
+    "preferredDate",
+    "notes",
+    "company",
+    "accessConstraints",
+  ];
+  for (const field of optionalTextFields) {
+    const valueForField = data[field];
+    if (valueForField !== undefined && (typeof valueForField !== "string" || valueForField.length > 2000)) {
+      errors.push(`${field} is invalid.`);
+    }
+  }
+
+  if (data.marketingConsent !== undefined && typeof data.marketingConsent !== "boolean") {
+    errors.push("Marketing consent is invalid.");
+  }
+
+  return errors.length === 0
+    ? { valid: true, errors, data: data as LeadInput }
+    : { valid: false, errors };
+}
+
+function isValidIdempotencyKey(value: string): boolean {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 }
 
 function generateReference(): string {
-  // Opaque, non-sequential reference token for the client.
-  // Format: SMP-XXXXXXXX (8 random alphanumeric chars)
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  let ref = "";
-  for (let i = 0; i < 8; i++) {
-    ref += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return `SMP-${ref}`;
+  const bytes = new Uint8Array(8);
+  crypto.getRandomValues(bytes);
+  return `SMP-${Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("").toUpperCase()}`;
 }
 
 Deno.serve(async (req: Request) => {
@@ -92,7 +135,7 @@ Deno.serve(async (req: Request) => {
 
   try {
     const idempotencyKey = req.headers.get("Idempotency-Key");
-    if (!idempotencyKey || idempotencyKey.length < 8) {
+    if (!idempotencyKey || !isValidIdempotencyKey(idempotencyKey)) {
       return new Response(
         JSON.stringify({
           error: "Missing or invalid Idempotency-Key header.",
@@ -103,10 +146,35 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    const body = await req.json();
-    const validation = validateInput(body as LeadInput);
+    const contentLength = Number(req.headers.get("Content-Length") ?? "0");
+    if (contentLength > 32_768) {
+      return new Response(
+        JSON.stringify({ error: "Request is too large.", code: "request_too_large", retryable: false }),
+        { status: 422, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
 
-    if (!validation.valid) {
+    const rawBody = await req.text();
+    if (rawBody.length > 32_768) {
+      return new Response(
+        JSON.stringify({ error: "Request is too large.", code: "request_too_large", retryable: false }),
+        { status: 422, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    let body: unknown;
+    try {
+      body = JSON.parse(rawBody);
+    } catch {
+      return new Response(
+        JSON.stringify({ error: "Request body must be valid JSON.", code: "invalid_json", retryable: false }),
+        { status: 422, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const validation = validateInput(body);
+
+    if (!validation.valid || !validation.data) {
       return new Response(
         JSON.stringify({
           error: "Validation failed: " + validation.errors.join(" "),
@@ -150,7 +218,7 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    const data = body as LeadInput;
+    const data = validation.data;
     const reference = generateReference();
 
     // Durable write — must succeed before we return success
@@ -210,8 +278,8 @@ Deno.serve(async (req: Request) => {
       JSON.stringify({ status: "received", reference }),
       { status: 201, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
-  } catch (err) {
-    console.error("Unexpected error:", err.message);
+  } catch {
+    console.error("Unexpected lead submission error");
     return new Response(
       JSON.stringify({
         error: "An unexpected error occurred. Please try again.",

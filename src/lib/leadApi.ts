@@ -26,13 +26,27 @@ export async function submitLead(
     });
 
     if (response.ok) {
-      const result = (await response.json()) as LeadSubmitResponse;
-      return { ok: true, data: result };
+      const result: unknown = await response.json();
+      if (isLeadSubmitResponse(result)) {
+        return { ok: true, data: result };
+      }
+
+      return {
+        ok: false,
+        error: {
+          error: "The server returned an invalid response. Please try again.",
+          code: "invalid_server_response",
+          retryable: true,
+        },
+      };
     }
 
     let errorBody: Partial<LeadSubmitError> = {};
     try {
-      errorBody = await response.json();
+      const parsed: unknown = await response.json();
+      if (isRecord(parsed)) {
+        errorBody = parsed as Partial<LeadSubmitError>;
+      }
     } catch {
       // non-JSON error body
     }
@@ -46,7 +60,7 @@ export async function submitLead(
       error: {
         error: errorBody.error ?? "Submission failed. Please try again.",
         code,
-        retryable: retryable ?? false,
+        retryable,
       },
     };
   } catch {
@@ -60,4 +74,17 @@ export async function submitLead(
       },
     };
   }
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function isLeadSubmitResponse(value: unknown): value is LeadSubmitResponse {
+  return (
+    isRecord(value) &&
+    value.status === "received" &&
+    typeof value.reference === "string" &&
+    value.reference.length > 0
+  );
 }
